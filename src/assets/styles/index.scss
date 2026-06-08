@@ -4,3 +4,18 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html, body {
+  background-color: #f6f6f6;
+}
+
+.n-drawer-mask {
+  backdrop-filter: blur(3px);
+  background-color: rgb(170, 170, 170, .2)
+}
+
+.card {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 16px;
+}

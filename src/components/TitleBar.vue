@@ -1,142 +1,83 @@
 <script setup lang="ts">
 import { getCurrentWindow } from '@tauri-apps/api/window'
+import { CloseOutlined, LineOutlined, SettingOutlined } from '@vicons/antd'
+import { useAppStore } from '@/store/app'
 
-const win = getCurrentWindow()
-const isMaximized = ref(false)
+const currentWindow = getCurrentWindow()
+const appStore = useAppStore()
+const active = ref(false)
 
-async function checkMaximized() {
-  isMaximized.value = await win.isMaximized()
+function handleMinimize() {
+  currentWindow.minimize()
 }
 
-const unlisten = ref<(() => void) | null>(null)
-
-onMounted(() => {
-  win.onResized(checkMaximized).then((fn) => {
-    unlisten.value = fn
-  })
-  checkMaximized()
-})
-
-onUnmounted(() => {
-  unlisten.value?.()
-})
-
-async function handleMinimize() {
-  await win.minimize()
-}
-
-async function handleToggleMaximize() {
-  await win.toggleMaximize()
-}
-
-async function handleClose() {
-  await win.close()
-}
-
-function onDragRegionMouseDown(e: MouseEvent) {
-  // 排除按钮区域
-  const target = e.target as HTMLElement
-  if (target.closest('.titlebar-controls'))
-    return
-  if (e.button === 0) {
-    win.startDragging()
+function handleClose() {
+  if (appStore.appSetting.closeMode === 'hide') {
+    currentWindow.hide()
+  }
+  else {
+    currentWindow.close()
   }
 }
 </script>
 
 <template>
-  <div
-    class="titlebar"
-    @mousedown="onDragRegionMouseDown"
-  >
-    <div class="titlebar-title">
-      Stock Bar
+  <div class="title-bar" data-tauri-drag-region>
+    <div class="title-bar__icon">
+      <img src="@/assets/images/icon.png" alt="icon">
     </div>
-    <div class="titlebar-controls">
-      <button
-        class="titlebar-btn"
-        title="最小化"
-        @click="handleMinimize"
-      >
-        <svg width="12" height="12" viewBox="0 0 12 12">
-          <rect x="2" y="5.5" width="8" height="1" fill="currentColor" />
-        </svg>
-      </button>
-      <button
-        class="titlebar-btn"
-        :title="isMaximized ? '还原' : '最大化'"
-        @click="handleToggleMaximize"
-      >
-        <svg v-if="isMaximized" width="12" height="12" viewBox="0 0 12 12">
-          <rect x="2.5" y="4.5" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="1" />
-          <rect x="3.5" y="0.5" width="7" height="7" rx="1" fill="var(--bg)" stroke="currentColor" stroke-width="1" />
-        </svg>
-        <svg v-else width="12" height="12" viewBox="0 0 12 12">
-          <rect x="2" y="2" width="8" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.2" />
-        </svg>
-      </button>
-      <button
-        class="titlebar-btn titlebar-btn--close"
-        title="关闭"
-        @click="handleClose"
-      >
-        <svg width="12" height="12" viewBox="0 0 12 12">
-          <line x1="3" y1="3" x2="9" y2="9" stroke="currentColor" stroke-width="1.2" />
-          <line x1="9" y1="3" x2="3" y2="9" stroke="currentColor" stroke-width="1.2" />
-        </svg>
-      </button>
+    <div class="title-bar__operation">
+      <div class="operation-setting" @click="active = true">
+        <n-icon :size="14" :component="SettingOutlined" />
+      </div>
+      <div class="operation-box" data-no-drag @click="handleMinimize">
+        <n-icon :size="12" :component="LineOutlined" />
+      </div>
+      <div class="operation-box" data-no-drag @click="handleClose">
+        <n-icon :size="12" :component="CloseOutlined" />
+      </div>
     </div>
   </div>
+  <Setting v-model:show="active" />
 </template>
 
 <style scoped lang="scss">
-.titlebar {
-  --bg: #1a1a2e;
-  --text: #e0e0e0;
-  --hover-bg: #2a2a3e;
-  --close-hover-bg: #e81123;
-
+.title-bar {
+  height: 42px;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 32px;
-  background: var(--bg);
-  color: var(--text);
-  user-select: none;
-  flex-shrink: 0;
-}
-
-.titlebar-title {
-  padding-left: 12px;
-  font-size: 13px;
-  opacity: 0.85;
-}
-
-.titlebar-controls {
-  display: flex;
-  height: 100%;
-  cursor: default;
-}
-
-.titlebar-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 46px;
-  height: 100%;
-  border: none;
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
-.titlebar-btn:hover {
-  background: var(--hover-bg);
-}
-
-.titlebar-btn--close:hover {
-  background: var(--close-hover-bg);
-  color: #fff;
+  background-color: #f6f6f6;
+  backdrop-filter: blur(20px);
+  &__icon {
+    width: 26px;
+    height: 26px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__operation {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    .operation-setting {
+      display: flex;
+      align-items: center;
+      margin-right: 16px;
+      cursor: pointer;
+    }
+    .operation-box {
+      cursor: pointer;
+      background-color: #e8e8e8;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 8px;
+    }
+  }
 }
 </style>

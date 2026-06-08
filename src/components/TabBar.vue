@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SettingOutlined, StockOutlined } from '@vicons/antd'
+import { StockOutlined, UserSwitchOutlined } from '@vicons/antd'
 
 const router = useRouter()
 const route = useRoute()
@@ -11,9 +11,9 @@ const tabs = ref([
     path: '/',
   },
   {
-    label: '设置',
-    icon: SettingOutlined,
-    path: '/setting',
+    label: '我的',
+    icon: UserSwitchOutlined,
+    path: '/mine',
   },
 ])
 
@@ -63,6 +63,7 @@ function handleClick(path: string) {
     cursor: pointer;
     text-align: center;
     font-weight: bold;
+    width: 50px;
     &__label {
       font-size: 10px;
       margin-top: -6px;
