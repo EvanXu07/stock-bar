@@ -2,7 +2,6 @@
 import { getCurrentWindow } from '@tauri-apps/api/window'
 import { CloseOutlined, LineOutlined, SettingOutlined } from '@vicons/antd'
 import { useAppStore } from '@/stores/app'
-import Setting from '@/components/Setting.vue'
 
 const currentWindow = getCurrentWindow()
 const appStore = useAppStore()

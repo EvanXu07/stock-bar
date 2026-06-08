@@ -6,7 +6,7 @@ const show = defineModel<boolean>('show', { default: false })
 
 const appStore = useAppStore()
 
-const appSetting = reactive(Object.assign({}, appStore.appSetting))
+const appSetting = reactive({ ...appStore.appSetting })
 
 // 每次打开抽屉时，从 store 重新读取
 watch(show, (val) => {
@@ -16,7 +16,7 @@ watch(show, (val) => {
 })
 
 function handleConfirmSetting() {
-  appStore.setSetting(appSetting)
+  appStore.appSetting = Object.assign({}, appStore.appSetting, appSetting)
   show.value = false
 }
 </script>
