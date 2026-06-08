@@ -1,15 +1,12 @@
-<script setup>
-import { closeModeOptions } from '@/constant/index'
-import { useAppStore } from '@/store/app'
+<script setup lang="ts">
+import { closeModeOptions } from '@/constants/index'
+import { useAppStore } from '@/stores/app'
 
-const show = defineModel('show', {
-  default: false,
-  type: Boolean,
-})
+const show = defineModel<boolean>('show', { default: false })
 
 const appStore = useAppStore()
 
-const appSetting = reactive(appStore.appSetting)
+const appSetting = reactive(Object.assign({}, appStore.appSetting))
 
 // 每次打开抽屉时，从 store 重新读取
 watch(show, (val) => {

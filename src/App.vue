@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { GlobalThemeOverrides } from 'naive-ui'
+import TabBar from '@/layouts/TabBar.vue'
+import TitleBar from '@/layouts/TitleBar.vue'
 
 const themeOverrides: GlobalThemeOverrides = {
   common: {
@@ -27,4 +29,10 @@ const themeOverrides: GlobalThemeOverrides = {
   </n-config-provider>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.app-content {
+  height: calc(100vh - 42px);
+  overflow: auto;
+  padding: 12px;
+}
+</style>

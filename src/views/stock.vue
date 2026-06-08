@@ -1,14 +1,13 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
   <div class="stock">
-    stock
+    <Empty style="margin-top: 100px" />
   </div>
 </template>
 
 <style lang="scss" scoped>
-.stock {
-  padding: 24px;
-}
+
 </style>

@@ -3,12 +3,10 @@
 
 <template>
   <div class="setting">
-    setting
+    <Empty style="margin-top: 100px" />
   </div>
 </template>
 
 <style lang="scss" scoped>
-.setting {
-  padding: 24px;
-}
+
 </style>

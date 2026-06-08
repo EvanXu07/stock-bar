@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { getCurrentWindow } from '@tauri-apps/api/window'
 import { CloseOutlined, LineOutlined, SettingOutlined } from '@vicons/antd'
-import { useAppStore } from '@/store/app'
+import { useAppStore } from '@/stores/app'
+import Setting from '@/components/Setting.vue'
 
 const currentWindow = getCurrentWindow()
 const appStore = useAppStore()
@@ -48,8 +49,6 @@ function handleClose() {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #f6f6f6;
-  backdrop-filter: blur(20px);
   &__icon {
     width: 26px;
     height: 26px;

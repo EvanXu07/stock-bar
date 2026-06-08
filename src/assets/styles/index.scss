@@ -19,3 +19,17 @@ html, body {
   padding: 10px;
   border-radius: 16px;
 }
+
+// 滚动条样式
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f6f6f6;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 5px;
+}

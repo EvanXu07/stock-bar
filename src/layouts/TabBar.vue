@@ -56,7 +56,7 @@ function handleClick(path: string) {
   color: #333;
   z-index: 999;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
   box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   .tabbar-item {
