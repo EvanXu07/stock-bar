@@ -11,7 +11,7 @@ html, body {
 
 .n-drawer-mask {
   backdrop-filter: blur(3px);
-  background-color: rgb(170, 170, 170, .2)
+  background-color: color-mix(in oklab, #888 10%, transparent);
 }
 
 .card {

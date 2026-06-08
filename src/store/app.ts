@@ -1,4 +1,4 @@
-import type { AppSetting, CloseMode } from '@/types'
+import type { AppSetting } from '@/types'
 import { defineStore } from 'pinia'
 import { reactive } from 'vue'
 

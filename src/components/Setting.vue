@@ -1,4 +1,5 @@
 <script setup>
+import { closeModeOptions } from '@/constant/index'
 import { useAppStore } from '@/store/app'
 
 const show = defineModel('show', {
@@ -16,17 +17,6 @@ watch(show, (val) => {
     appSetting.closeMode = appStore.appSetting.closeMode
   }
 })
-
-const closeModeOptions = ref([
-  {
-    label: '最小化到系统托盘',
-    value: 'hide',
-  },
-  {
-    label: '退出应用',
-    value: 'close',
-  },
-])
 
 function handleConfirmSetting() {
   appStore.setSetting(appSetting)
