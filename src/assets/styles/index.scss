@@ -1,4 +1,61 @@
-// reset styles
+// ========== CSS 变量 ==========
+:root {
+  // 亮色（默认）
+  --bg-primary: #f6f6f6;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fafafa;
+  --bg-operation: #e8e8e8;
+  --bg-hover: #e8e8e8;
+  --bg-mask: color-mix(in oklab, #888 10%, transparent);
+  --bg-drawer: #f6f6f6;
+  --bg-scrollbar-track: #f6f6f6;
+  --bg-scrollbar-thumb: #bbb;
+
+  --text-primary: #333;
+  --text-secondary: #666;
+  --text-tertiary: #999;
+  --text-code: #bbb;
+  --text-muted: #ccc;
+
+  --color-red: #E6212A;
+  --color-green: #19BE6E;
+
+  --border-light: #ddd;
+  --border-divider: #e0e0e0;
+
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-tabbar: 0 -2px 20px rgba(0, 0, 0, 0.1);
+}
+
+// 暗黑
+html.dark {
+  --bg-primary: #1a1a2e;
+  --bg-card: #252540;
+  --bg-card-hover: #2a2a48;
+  --bg-operation: #3a3a58;
+  --bg-hover: #3a3a58;
+  --bg-mask: color-mix(in oklab, #000 50%, transparent);
+  --bg-drawer: #1a1a2e;
+  --bg-scrollbar-track: #1a1a2e;
+  --bg-scrollbar-thumb: #555;
+
+  --text-primary: #e0e0e0;
+  --text-secondary: #aaa;
+  --text-tertiary: #777;
+  --text-code: #666;
+  --text-muted: #555;
+
+  --color-red: #ff4757;
+  --color-green: #2ed573;
+
+  --border-light: #3a3a58;
+  --border-divider: #3a3a58;
+
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.25);
+  --shadow-tabbar: 0 -2px 20px rgba(0, 0, 0, 0.4);
+}
+
+// ========== Reset ==========
 * {
   margin: 0;
   padding: 0;
@@ -6,30 +63,42 @@
 }
 
 html, body {
-  background-color: #f6f6f6;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
 }
 
+// ========== Naive UI Overrides ==========
 .n-drawer-mask {
   backdrop-filter: blur(3px);
-  background-color: color-mix(in oklab, #888 10%, transparent);
+  background-color: var(--bg-mask) !important;
 }
 
-.card {
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 16px;
+.n-drawer {
+  .n-drawer-content {
+    background-color: var(--bg-drawer) !important;
+  }
 }
 
-// 滚动条样式
+.n-radio .n-radio__label {
+  color: var(--text-primary) !important;
+}
+
+// ========== Scrollbar ==========
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f6f6f6;
+  background-color: var(--bg-scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #bbb;
+  background-color: var(--bg-scrollbar-thumb);
   border-radius: 5px;
+}
+
+// ========== Transition ==========
+* {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }

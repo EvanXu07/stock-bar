@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { closeModeOptions } from '@/constants/index'
+import { closeModeOptions, themeModeOptions } from '@/constants/index'
 import { useAppStore } from '@/stores/app'
 
 const show = defineModel<boolean>('show', { default: false })
@@ -12,11 +12,12 @@ const appSetting = reactive({ ...appStore.appSetting })
 watch(show, (val) => {
   if (val) {
     appSetting.closeMode = appStore.appSetting.closeMode
+    appSetting.theme = appStore.appSetting.theme
   }
 })
 
 function handleConfirmSetting() {
-  appStore.appSetting = Object.assign({}, appStore.appSetting, appSetting)
+  appStore.$patch({ appSetting: { ...appSetting } })
   show.value = false
 }
 </script>
@@ -26,6 +27,26 @@ function handleConfirmSetting() {
     <div class="setting">
       <div class="setting-title">
         设置
+      </div>
+
+      <div class="sub-title">
+        主题
+      </div>
+      <div class="card">
+        <n-radio-group
+          v-model:value="appSetting.theme"
+          size="small"
+        >
+          <div
+            v-for="item in themeModeOptions"
+            :key="item.value"
+            class="radio-item"
+          >
+            <n-radio :value="item.value">
+              {{ item.label }}
+            </n-radio>
+          </div>
+        </n-radio-group>
       </div>
 
       <div class="sub-title">
@@ -73,18 +94,24 @@ function handleConfirmSetting() {
 <style lang="scss" scoped>
 .setting {
   padding: 12px 16px;
-  background-color: #f6f6f6;
+  background-color: var(--bg-drawer);
   height: 100vh;
   border-radius: 8px 0 0 8px;
   position: relative;
   &-title {
     font-size: 16px;
     font-weight: bold;
+    color: var(--text-primary);
   }
   .sub-title {
     font-size: 13px;
-    color: #666;
-    margin: 10px 0 6px;
+    color: var(--text-secondary);
+    margin: 14px 0 6px;
+  }
+  .card {
+    background-color: var(--bg-card);
+    padding: 10px;
+    border-radius: 16px;
   }
   .radio-item + .radio-item {
     margin-top: 4px;

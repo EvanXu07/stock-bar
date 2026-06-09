@@ -26,7 +26,7 @@ const { text = '', height = 120 } = defineProps<{
     }
   }
   &-text {
-    color: #999;
+    color: var(--text-tertiary);
     font-size: 12px;
     margin-top: 10px;
   }

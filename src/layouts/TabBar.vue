@@ -53,24 +53,25 @@ function handleClick(path: string) {
   left: 50%;
   transform: translateX(-50%);
   border-radius: 60px;
-  color: #333;
+  color: var(--text-primary);
   z-index: 999;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--bg-card);
   backdrop-filter: blur(16px);
-  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-tabbar);
+  border-top: 1px solid var(--border-light);
   .tabbar-item {
     cursor: pointer;
     text-align: center;
     font-weight: bold;
     width: 50px;
+    color: var(--text-tertiary);
     &__label {
       font-size: 10px;
       margin-top: -6px;
     }
   }
   .tabbar-item--active {
-    color: #E6212A;
+    color: var(--color-red);
   }
 }
 </style>

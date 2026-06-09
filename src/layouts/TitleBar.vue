@@ -14,8 +14,7 @@ function handleMinimize() {
 function handleClose() {
   if (appStore.appSetting.closeMode === 'hide') {
     currentWindow.hide()
-  }
-  else {
+  } else {
     currentWindow.close()
   }
 }
@@ -48,6 +47,8 @@ function handleClose() {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-light);
   &__icon {
     width: 26px;
     height: 26px;
@@ -65,16 +66,23 @@ function handleClose() {
       align-items: center;
       margin-right: 16px;
       cursor: pointer;
+      color: var(--text-secondary);
+      &:hover {
+        color: var(--text-primary);
+      }
     }
     .operation-box {
       cursor: pointer;
-      background-color: #e8e8e8;
+      background-color: var(--bg-operation);
       border-radius: 6px;
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 6px 8px;
+      color: var(--text-secondary);
+      &:hover {
+        color: var(--text-primary);
+      }
     }
   }
 }

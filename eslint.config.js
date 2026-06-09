@@ -5,4 +5,8 @@ export default antfu({
     'src-tauri/target',
     'src-tauri/gen',
   ],
+}, {
+  rules: {
+    'style/brace-style': 'off',
+  },
 })

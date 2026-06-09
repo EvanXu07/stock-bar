@@ -8,3 +8,18 @@ export const closeModeOptions = [
     value: 'close',
   },
 ]
+
+export const themeModeOptions = [
+  {
+    label: '跟随系统',
+    value: 'system',
+  },
+  {
+    label: '亮色',
+    value: 'light',
+  },
+  {
+    label: '暗黑',
+    value: 'dark',
+  },
+]
