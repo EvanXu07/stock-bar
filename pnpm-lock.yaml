@@ -20,6 +20,9 @@ importers:
       pinia-plugin-persistedstate:
         specifier: ^4.7.1
         version: 4.7.1(pinia@3.0.4(typescript@6.0.3)(vue@3.5.35(typescript@6.0.3)))
+      stock-sdk:
+        specifier: ^1.10.1
+        version: 1.10.1
       vue:
         specifier: ^3.5.35
         version: 3.5.35(typescript@6.0.3)
@@ -2056,6 +2059,10 @@ packages:
   speakingurl@14.0.1:
     resolution: {integrity: sha512-1POYv7uv2gXoyGFpBCmpDVSNV74IfsWlDW216UPjbWufNf+bSU6GdbDsxdcxtfwb4xlI3yxzOTKClUosxARYrQ==}
     engines: {node: '>=0.10.0'}
+
+  stock-sdk@1.10.1:
+    resolution: {integrity: sha512-biFs+W6FLuxHfcFeTwDhktfYR87dvHtGKkxN2tHNQeMB2vwU2UnMglmvmyKgRJx572HnxztNGTs+MvwSZyXPuA==}
+    engines: {node: '>=18.0.0'}
 
   strip-indent@4.1.1:
     resolution: {integrity: sha512-SlyRoSkdh1dYP0PzclLE7r0M9sgbFKKMFXpFRUMNuKhQSbC6VQIGzq3E0qsfvGJaUFJPGv6Ws1NZ/haTAjfbMA==}
@@ -4363,6 +4370,8 @@ snapshots:
   spdx-license-ids@3.0.23: {}
 
   speakingurl@14.0.1: {}
+
+  stock-sdk@1.10.1: {}
 
   strip-indent@4.1.1: {}
 
